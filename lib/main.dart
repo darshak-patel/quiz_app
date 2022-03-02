@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/answer.dart';
 import 'package:quiz_app/question.dart';
 
 void main() => runApp(const MyApp());
@@ -13,9 +14,18 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var counter = 0;
   final questions = [
-    "What is your native country name?",
-    "What is the name of programming language you are learning at present?",
-    "What is your favourite food?"
+    {
+      'qText': 'What is your native country name?',
+      'answers': ['India', 'Canada', 'USA', 'UK']
+    },
+    {
+      'qText': 'What is the name of programming language you are learning at present?',
+      'answers': ['Java', 'Python', 'C++', 'Flutter']
+    },
+    {
+      'qText': 'What is your favourite food?',
+      'answers': ['Apple', 'Orange', 'Kiwi', 'Banana']
+    },
   ];
 
   incrementCounter() {
@@ -37,14 +47,11 @@ class _MyAppState extends State<MyApp> {
                   children: [
                     Center(
                       child: Question(
-                        qText: questions[counter],
+                        qText: questions[counter]['qText'],
                       ),
                       widthFactor: double.infinity,
                     ),
-                    ElevatedButton(onPressed: incrementCounter, child: const Text("Answer 1")),
-                    ElevatedButton(onPressed: incrementCounter, child: const Text("Answer 2")),
-                    ElevatedButton(onPressed: incrementCounter, child: const Text("Answer 3")),
-                    ElevatedButton(onPressed: incrementCounter, child: const Text("Answer 4"))
+                    ...questions.map((e) => Answer(aText: 'a', function: incrementCounter))
                   ],
                 )
               : const Center(
