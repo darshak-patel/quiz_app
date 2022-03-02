@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> {
                       ),
                       widthFactor: double.infinity,
                     ),
-                    ...questions.map((e) => Answer(aText: 'a', function: incrementCounter))
+                    ...(questions[counter]['answers'] as List<String>).map((e) => Answer(aText: e, function: incrementCounter))
                   ],
                 )
               : const Center(
