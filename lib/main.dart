@@ -29,24 +29,30 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Material App',
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Quiz App'),
-        ),
-        body: Column(
-          children: [
-            Center(
-              child: Question(
-                qText: questions[counter],
-              ),
-              widthFactor: double.infinity,
-            ),
-            ElevatedButton(onPressed: incrementCounter, child: const Text("Answer 1")),
-            ElevatedButton(onPressed: incrementCounter, child: const Text("Answer 2")),
-            ElevatedButton(onPressed: incrementCounter, child: const Text("Answer 3")),
-            ElevatedButton(onPressed: incrementCounter, child: const Text("Answer 4"))
-          ],
-        ),
-      ),
+          appBar: AppBar(
+            title: const Text('Quiz App'),
+          ),
+          body: counter < questions.length
+              ? Column(
+                  children: [
+                    Center(
+                      child: Question(
+                        qText: questions[counter],
+                      ),
+                      widthFactor: double.infinity,
+                    ),
+                    ElevatedButton(onPressed: incrementCounter, child: const Text("Answer 1")),
+                    ElevatedButton(onPressed: incrementCounter, child: const Text("Answer 2")),
+                    ElevatedButton(onPressed: incrementCounter, child: const Text("Answer 3")),
+                    ElevatedButton(onPressed: incrementCounter, child: const Text("Answer 4"))
+                  ],
+                )
+              : const Center(
+                  child: Text(
+                    "Thank you for using quiz app",
+                    style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold, fontSize: 40, fontStyle: FontStyle.italic),
+                  ),
+                )),
     );
   }
 }
