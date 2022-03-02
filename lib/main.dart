@@ -11,10 +11,22 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Material App Bar'),
+          title: const Text('Quiz App'),
         ),
-        body: const Center(
-          child: Text('Hello World'),
+        body: Column(
+          children: const [
+            Center(
+              child: Text(
+                "Hello World",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25, fontStyle: FontStyle.italic),
+              ),
+              widthFactor: double.infinity,
+            ),
+            ElevatedButton(onPressed: null, child: Text("Answer 1")),
+            ElevatedButton(onPressed: null, child: Text("Answer 2")),
+            ElevatedButton(onPressed: null, child: Text("Answer 3")),
+            ElevatedButton(onPressed: null, child: Text("Answer 4"))
+          ],
         ),
       ),
     );
