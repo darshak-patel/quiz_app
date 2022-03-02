@@ -13,20 +13,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var counter = 0;
-  final questions = [
-    {
-      'qText': 'What is your native country name?',
-      'answers': ['India', 'Canada', 'USA', 'UK']
-    },
-    {
-      'qText': 'What is the name of programming language you are learning at present?',
-      'answers': ['Java', 'Python', 'C++', 'Flutter']
-    },
-    {
-      'qText': 'What is your favourite food?',
-      'answers': ['Apple', 'Orange', 'Kiwi', 'Banana']
-    },
-  ];
 
   incrementCounter() {
     setState(() {
@@ -36,6 +22,20 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    const questions = [
+      {
+        'qText': 'What is your native country name?',
+        'answers': ['India', 'Canada', 'USA', 'UK']
+      },
+      {
+        'qText': 'What is the name of programming language you are learning at present?',
+        'answers': ['Java', 'Python', 'C++', 'Flutter']
+      },
+      {
+        'qText': 'What is your favourite food?',
+        'answers': ['Apple', 'Orange', 'Kiwi', 'Banana']
+      },
+    ];
     return MaterialApp(
       title: 'Material App',
       home: Scaffold(
@@ -54,12 +54,19 @@ class _MyAppState extends State<MyApp> {
                     ...(questions[counter]['answers'] as List<String>).map((e) => Answer(aText: e, function: incrementCounter))
                   ],
                 )
-              : const Center(
-                  child: Text(
-                    "Thank you for using quiz app",
-                    style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold, fontSize: 40, fontStyle: FontStyle.italic),
+              : Column(children: [
+                  const Center(
+                    child: Text(
+                      "Thank you for using quiz app",
+                      style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold, fontSize: 40, fontStyle: FontStyle.italic),
+                    ),
                   ),
-                )),
+                  ElevatedButton(
+                      onPressed: () => setState(() {
+                            counter = 0;
+                          }),
+                      child: const Text('Start Quiz Again'))
+                ])),
     );
   }
 }
