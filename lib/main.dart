@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/answer.dart';
+import 'package:quiz_app/api/local_auth_api.dart';
 import 'package:quiz_app/question.dart';
 
 void main() => runApp(const MyApp());
@@ -62,9 +63,18 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   ElevatedButton(
-                      onPressed: () => setState(() {
+                      onPressed: () async {
+                        final isAuthenticated = await LocalAuthApi().authenticateWithBiometrics();
+                        if (isAuthenticated) {
+                          setState(() {
                             counter = 0;
-                          }),
+                          });
+                        }
+                      },
+                      // () => setState(() {
+                      //       counter = 0;
+                      //     }),
+
                       child: const Text('Start Quiz Again'))
                 ])),
     );
