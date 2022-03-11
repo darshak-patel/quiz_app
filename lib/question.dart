@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Question extends StatelessWidget {
-  const Question({Key? key, this.qText}) : super(key: key);
+  const Question({Key? key, required this.qText}) : super(key: key);
 
-  final qText;
+  final String qText;
 
   @override
   Widget build(BuildContext context) {
