@@ -25,10 +25,14 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  void resetQuiz() {
-    setState(() {
-      counter = 0;
-    });
+  void resetQuiz() async {
+    final isAuthenticated = await LocalAuthApi().authenticateWithBiometrics();
+    if (isAuthenticated) {
+      setState(() {
+        totalScore = 0;
+        counter = 0;
+      });
+    }
   }
 
   @override

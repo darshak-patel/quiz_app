@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'api/local_auth_api.dart';
-
-class Result extends StatefulWidget {
+class Result extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
   const Result({
     Key? key,
@@ -14,41 +12,15 @@ class Result extends StatefulWidget {
   final int result;
 
   @override
-  State<Result> createState() => _ResultState();
-}
-
-class _ResultState extends State<Result> {
-  late final int score;
-
-  @override
-  void initState() {
-    score = widget.result;
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Column(children: [
       Center(
         child: Text(
-          "Thank you for using quiz app, your total score is $score",
+          "Thank you for using quiz app, your total score is $result",
           style: const TextStyle(color: Colors.amber, fontWeight: FontWeight.bold, fontSize: 40, fontStyle: FontStyle.italic),
         ),
       ),
-      ElevatedButton(
-          onPressed: () async {
-            final isAuthenticated = await LocalAuthApi().authenticateWithBiometrics();
-            if (isAuthenticated) {
-              setState(() {
-                widget.resetQuiz;
-              });
-            }
-          },
-          // () => setState(() {
-          //       counter = 0;
-          //     }),
-
-          child: const Text('Start Quiz Again'))
+      ElevatedButton(onPressed: resetQuiz, child: const Text('Start Quiz Again'))
     ]);
   }
 }
